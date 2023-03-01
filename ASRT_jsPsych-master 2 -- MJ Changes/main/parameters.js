@@ -16,7 +16,7 @@ const isFirstFiveRandom = false;
 
 // New PARAMETERS
 const secondTrialImage = "url(../static/images/penguin.jpg)"; // new image 
-const blockToBeginUsingSecondImage = 2; // set when the new image starts (set to 1 to have image 2 throughout entire task)
+const blockToBeginUsingSecondImage = 3; // set when the new image starts (set to 1 to have image 2 throughout entire task)
 
 // Audtio files
 //const feedbackError = "url(../static/sound/buzz.wav)";
