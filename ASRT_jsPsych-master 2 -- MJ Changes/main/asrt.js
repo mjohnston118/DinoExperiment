@@ -17,15 +17,15 @@ function randomStimulusProc(block, trialNumber, isFirstTrial, isPractice) {
         stimuli[0].data.is_practice = 1;
         trialProp = randomTrialProperties
     }
-    else if (isFirstTrial == 1 && block < 2){ 
+    else if (isFirstTrial == 1 && block < blockToBeginUsingSecondImage){ 
         stimuli[0].data.is_practice = 0;
         trialProp = firstTrialProperties
     }
-    else if (isFirstTrial == 1 && block >= 2){
+    else if (isFirstTrial == 1 && block >= blockToBeginUsingSecondImage){
         stimuli[0].data.is_practice = 0;
         trialProp = secondTrialWithDelayProperties //First trial actually means the first image in a given block
     }
-    else if(block >= 2){
+    else if(block >= blockToBeginUsingSecondImage){
         stimuli[0].data.is_practice = 0;
         trialProp = secondTrialProperties
     }
@@ -53,7 +53,7 @@ function insertRepetition(timeline, element) {
     
     function randomRepeat(actualRandom, block) {
       let randomIncorrectTrialProps; // I added this variable to be changed depedning on block
-        if(block < 2){
+        if(block < blockToBeginUsingSecondImage){
           randomIncorrectTrialProps = randomIncorrectTrialProperties
         }
         else { // pretty sure it's always going to else regardless of block...
@@ -86,7 +86,7 @@ function IncorrectTrialProcs(timeline, timelineVariables) {
 function randomStimulusToTimeline(timeline, block, trialNumber, isFirstTrial, isPractice) {
     actualRandom = randomStimulusProc(block, trialNumber, isFirstTrial, isPractice) //longer delay before first element
     timeline.push(actualRandom);
-    insertRepetition(timeline, randomRepeat(actualRandom));
+    insertRepetition(timeline, randomRepeat(actualRandom, block));
 }
 
 //function for adding pattern stimulus to timeline -- I changed this below..
@@ -112,7 +112,7 @@ function patternStimulusToTimeline(timeline, block, sequencePosition, sequenceRe
 // New code to update with second image -- error could be here but I don't think so...
 function patternStimulusToTimeline(timeline, block, sequencePosition, sequenceRepetition) {
     let trialProps, incorrectTrialProps;
-    if (block < 2) {
+    if (block < blockToBeginUsingSecondImage) {
         trialProps = patternTrialProperties;
         incorrectTrialProps = patternIncorrectTrialProperties;
     } 
